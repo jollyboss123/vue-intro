@@ -4,7 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Avatar: The Last Airbender</title>
   </head>
-  <body></body>
+  <body>
+    <div id="app">
+        <p v-if="characters.length === 0">There are no characters</p>
+        <ul v-else-if="characters.length % 2 === 0">
+            <li v-for="character in characters">{{character.name}}</li>
+        </ul>
+        <p>
+            <span v-for="(character, index) in characters">
+                {{character.name}}{{index === characters.length - 1 ? '' : ', '}}
+            </span>
+        </p>
+        <p v-else>There are odd number of characters</p>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+        data: () => ({
+            characters: [
+            {
+              name: 'Aang'
+            },
+            {
+              name: 'Zuko'
+            },
+            {
+              name: 'Toph'
+            },
+            {
+              name: 'Katara'
+            }
+          ]
+        })
+      }).mount('#app')
+    </script>
+  </body>
 </html>
