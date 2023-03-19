@@ -9,7 +9,7 @@
   <body>
     <h1>Hello Frontend Masters!</h1> 
     <div id="app">
-        <h1>Counter</h1>
+        <h1>{{counterTitle}}</h1>
         <p>{{count}}</p>
         <button @click="incrementCount(10, $event)">Increment count</button>
         <h2>{{incrementAmount}}</h2>
@@ -35,6 +35,7 @@
             data() {
                 return {
                     count: 10,
+                    counterTitle: 'Counter Standard',
                     incrementAmount: 1,
                     message: 'Hello it works',
                     listOfNumbers: [1,2,3,4,5]
@@ -45,6 +46,14 @@
                     console.log(newAmount)
                     console.log(event)
                     this.count += this.incrementAmount;
+                }
+            },
+            watch: {
+                count(newValue) {
+                    console.log(newValue)
+                    if (newValue > 20) {
+                        this.counterTitle += ' Very Long'
+                    }
                 }
             }
         })
