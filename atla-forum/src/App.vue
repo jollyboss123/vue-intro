@@ -1,11 +1,6 @@
 <template>
     <div>
-        <h2>Statistics</h2>
-        <ul>
-            <li v-for="(stat, key) in benderStatistics" :key="`bender-${stat}-${key}`">
-                {{key}}: {{stat}}
-            </li>
-        </ul>
+        <BenderStatistics :characters="characters"/>
         <h2>Characters</h2>
         <p v-if="characters.length === 0">There are no characters</p>
         <ul v-else-if="characters.length % 2 ===0">
@@ -43,8 +38,13 @@
 </template>
 
 <script>
+import BenderStatistics from './components/BenderStatistics.vue'
+
 export default {
-  data: () => ({
+    components: {
+        BenderStatistics
+    },
+    data: () => ({
             newCharacter: {
                 name: '',
                 element: []
@@ -69,27 +69,6 @@ export default {
           ],
           favoriteList: []
         }),
-        computed: {
-            benderStatistics() {
-                const elements = ['Air', 'Water', 'Fire', 'Earth']
-                const statistics = {
-                    'Air': 0,
-                    'Water': 0,
-                    'Fire': 0,
-                    'Earth': 0
-                }
-
-                this.characters.forEach(character => {
-                    elements.forEach(element => {
-                        if (character.element.indexOf(element) > -1) {
-                            statistics[element] += 1
-                        }
-                    })
-                })
-
-                return statistics 
-            }
-        },
         methods: {
             addNewCharacter() {
                 this.characters.push(this.newCharacter)
