@@ -15,6 +15,15 @@ export default {
       this.pokedex = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
       .then((response) => response.json())
     }
+  },
+  beforeCreate() {
+    console.log("Before Created");
+    console.log(this.pokedex);
+  },
+  created() {
+    console.log("Created");
+    console.log(this.pokedex);
+    this.fetchPokemon();
   }
 }
 </script>
