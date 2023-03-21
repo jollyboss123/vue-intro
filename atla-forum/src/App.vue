@@ -5,8 +5,7 @@
         <p v-if="characters.length === 0">There are no characters</p>
         <ul v-else-if="characters.length % 2 ===0">
             <li v-for="(character, index) in characters" :key="`even-character-${index}`">
-                <p>{{character.name}}</p>
-                <button @click="favoriteCharacter(character)">Favorite</button>
+                <CharacterCard :character="character" @favorite="addFavoriteCharacter"/>
             </li>
         </ul>
         <p v-else>There are odd number of characters</p>
@@ -31,18 +30,16 @@
             </span>
         </p>
     </div>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <script>
 import BenderStatistics from './components/BenderStatistics.vue'
+import CharacterCard from './components/CharacterCard.vue'
 
 export default {
     components: {
-        BenderStatistics
+        BenderStatistics,
+        CharacterCard
     },
     data: () => ({
             newCharacter: {
@@ -74,8 +71,8 @@ export default {
                 this.characters.push(this.newCharacter)
                 this.newCharacter = {name:''}
             },
-            favoriteCharacter(character) {
-                this.favoriteList.push(character)
+            addFavoriteCharacter(payload) {
+                this.favoriteList.push(payload)
             }
         }
 }

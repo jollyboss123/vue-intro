@@ -1,8 +1,8 @@
 <template>
     <h1>User: {{ user.name }}</h1>
     <p>Favorite Food: {{ user.food }}</p>
-    <button @click="$emit('change-name')">Change Name</button>
-    <!-- <button @click="tellParentToChangeName">Change Name</button> -->
+    <!-- <button @click="$emit('change-name')" >Change Name</button> -->
+    <button @click="tellParentToChangeName">Change Name</button>
 </template>
 
 <script>
