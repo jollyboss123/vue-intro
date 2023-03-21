@@ -12,12 +12,6 @@
     </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style>
 .sidebar {
     border: 2px; color: aqua;
