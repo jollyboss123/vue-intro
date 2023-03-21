@@ -1,31 +1,46 @@
 <template>
-  <header>
-    <div class="wrapper">
+  <BaseLayout>
+    <template v-slot:sidebar>
+      Aside 
+    </template>
+    <template #main>
       <UserCard :user="refinedUserData" @change-name="changeName"/>
+    </template>
+    <template v-slot:footer>
       <BaseCounter />
-      <hr />
-      <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
-      <p v-else>Odd: {{ message }}</p>
-      <ul v-for="(item, index) in listOfNumbers" :key="`item-${index}`">
-        <li>
-          {{ item.id }}
-          <ul>
-            <li v-for="(number, index) in item.list" :key="`number-${index}`">{{ number }}</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </header>
+    </template>
+  </BaseLayout>
+    <BaseButton> 
+      Star - Hello
+    </BaseButton>
+    <BaseButton />
+    <BaseButton left/>
+    <BaseButton>{{ userData.name }}</BaseButton>
+    <hr />
+    <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
+    <p v-else>Odd: {{ message }}</p>
+    <ul v-for="(item, index) in listOfNumbers" :key="`item-${index}`">
+      <li>
+        {{ item.id }}
+        <ul>
+          <li v-for="(number, index) in item.list" :key="`number-${index}`">{{ number }}</li>
+        </ul>
+      </li>
+    </ul>
 </template>
 
 <script>
+import BaseLayout from "./components/BaseLayout.vue";
+import BaseButton from "./components/BaseButton.vue";
 import BaseCounter from "./components/BaseCounter.vue"
 import UserCard from "./components/UserCard.vue";
 
 export default {
   components: {
     BaseCounter,
-    UserCard
+    UserCard,
+    BaseButton,
+    BaseLayout 
   },
   data() {
           return {
