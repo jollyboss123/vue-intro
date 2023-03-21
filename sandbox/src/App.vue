@@ -1,6 +1,7 @@
 <template>
   <header>
     <div class="wrapper">
+      <UserCard :user="refinedUserData" @change-name="changeName"/>
       <BaseCounter />
       <hr />
       <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
@@ -15,17 +16,16 @@
       </ul>
     </div>
   </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <script>
 import BaseCounter from "./components/BaseCounter.vue"
+import UserCard from "./components/UserCard.vue";
+
 export default {
   components: {
-    BaseCounter 
+    BaseCounter,
+    UserCard
   },
   data() {
           return {
@@ -56,9 +56,27 @@ export default {
                 id: '295a8170-59c1-4462-9de1-3c9cd41cedab',
                 list: [1, 2, 3]
               }
-            ]
+            ],
+            userData: {
+              name: 'Ben',
+              preferredFramework: 'Vue',
+              favoriteFood: 'sushi'
+            }
           }
         },
+  computed: {
+    refinedUserData() {
+      return {
+        name: this.userData.name,
+        food: this.userData.favoriteFood
+      }
+    }
+  },
+  methods: {
+    changeName() {
+      this.userData.name = 'Charlie'
+    }
+  }
 }
 </script>
 
