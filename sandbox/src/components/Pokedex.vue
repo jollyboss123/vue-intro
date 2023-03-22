@@ -1,60 +1,44 @@
-<script>
-import {ref, computed, reactive} from 'vue'
+<script setup>
+import BaseButton from './BaseButton.vue';
+import {ref, computed, reactive, defineEmits} from 'vue'
 
-export default {
-    async setup() {
-        // only vanilla js in setup 
+// only vanilla js in setup 
 
-        // ref to convert native js to vue component to attach reactivity
-        const regionName = ref("Kanto")
+const emits = defineEmits(['change-region-name'])
 
-        // akin the options api of data in vue
-        const state = reactive({
-            elementType: 'Lightning'
-        })
-
-        console.log(regionName);
-        console.log(state);
-
-        const regionNameAllCaps = computed(
-            // to refer to the component itself via .value
-            () => regionName.value.toUpperCase()
-        )
-
-        const elementTypeAllCaps = computed(
-            () => state.elementType.toUpperCase()
-        )
-
-        const pokedex = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
-        .then((response) => response.json())
-
-        return {
-            pokedex,
-            regionName,
-            regionNameAllCaps,
-            elementTypeAllCaps
-        }
-    },
-    beforeCreate() {
-        console.log("Before Created");
-        console.log(this.pokedex);
-        console.log(this.regionName);
-    },
-    created() {
-        console.log("Created");
-        console.log(this.pokedex);
-        console.log(this.regionName);
-    },
-    computed: {
-        regionNameLowerCase() {
-            return this.regionName.toLowerCase()
-        }
-    },
-    methods: {
-        changeRegionName() {
-            this.regionName = "Hoenn"
-        }
+const props = defineProps({
+    region: {
+        type: String,
+        default: "Kanto"
     }
+})
+
+// ref to convert native js to vue component to attach reactivity
+const regionName = ref("Kanto")
+
+// akin the options api of data in vue
+const state = reactive({
+    elementType: 'Lightning'
+})
+
+console.log(regionName);
+console.log(state);
+
+const regionNameAllCaps = computed(
+    // to refer to the component itself via .value
+    () => regionName.value.toUpperCase()
+)
+
+const elementTypeAllCaps = computed(
+    () => state.elementType.toUpperCase() + " " + props.region
+)
+
+const pokedex = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+.then((response) => response.json())
+
+const changeRegionName = () => {
+    regionName.value = "Hoenn"
+    emits('change-region-name')
 }
 </script>
 
@@ -64,5 +48,6 @@ export default {
     <h3>{{ regionNameLowerCase }}</h3>
     <h3>{{ elementTypeAllCaps }}</h3>
     <button @click="changeRegionName">Change Region Name</button>
+    <BaseButton />
     <pre>{{ pokedex }}</pre>
 </template>
