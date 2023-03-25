@@ -15,7 +15,7 @@ html {
   background-color: aliceblue;
 }
 
-button {
+.button {
   border: 6px solid blueviolet;
 }
 </style>

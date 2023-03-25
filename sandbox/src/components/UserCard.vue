@@ -3,12 +3,12 @@
     <h2>New Counter</h2>
     <p>Global count: {{ countStore.globalCount }}</p>
     <p>Local count: {{ countStore.localCount }}</p>
-    <button @click="countStore.incrementGlobalCount">Global</button>
-    <button @click="countStore.incrementLocalCount">Local</button>
+    <button :class="$style.button" @click="countStore.incrementGlobalCount">Global</button>
+    <button :class="$style.button" @click="countStore.incrementLocalCount">Local</button>
     <br/>
     <p>Favorite Food: {{ user.food }}</p>
     <!-- <button @click="$emit('change-name')" >Change Name</button> -->
-    <button @click="tellParentToChangeName">Change Name</button>
+    <button :class="$style.button" @click="tellParentToChangeName">Change Name</button>
 </template>
 
 <script>
@@ -36,8 +36,8 @@ export default {
 }
 </script>
 
-<style scoped>
-button {
+<style module>
+.button {
     border: 8px solid blue;
 }
 </style>
