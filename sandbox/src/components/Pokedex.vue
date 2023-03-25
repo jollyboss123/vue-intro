@@ -1,6 +1,6 @@
 <script setup>
 import BaseButton from './BaseButton.vue';
-import {ref, computed, reactive, defineEmits} from 'vue'
+import {ref, computed, reactive, defineEmits, onBeforeUnmount} from 'vue'
 
 // only vanilla js in setup 
 
@@ -40,6 +40,10 @@ const changeRegionName = () => {
     regionName.value = "Hoenn"
     emits('change-region-name')
 }
+
+onBeforeUnmount(() => {
+    console.log("This is onBeforeUnmount!");
+})
 </script>
 
 <template>

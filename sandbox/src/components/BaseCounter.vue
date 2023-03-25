@@ -1,6 +1,11 @@
 <template>
     <h1>{{ displayTitle }}</h1>
-    <h2>New Count: {{ newCount }}</h2>
+    <h2>New Counter</h2>
+    <p>Global count: {{ countStore.globalCount }}</p>
+    <p>Local count: {{ countStore.localCount }}</p>
+    <button @click="countStore.incrementGlobalCount">Global</button>
+    <button @click="countStore.incrementLocalCount">Local</button>
+    <br/>
     <p :data-increment-by="incrementAmount">{{ count }}</p>
     <button @click="incrementCount">Increment Count</button>
     <h1>{{ incrementAmount }}</h1>
@@ -12,11 +17,13 @@
 </template>
 
 <script>
-import { newCount } from '@/composables/countStore'
+import { useCount } from '@/composables/countStore'
 export default {
   setup() {
+    const countStore = useCount()
+    console.log(countStore);
     return {
-      newCount
+      countStore
     }
   },
   data: () => ({
@@ -41,7 +48,7 @@ export default {
           console.log(newAmount)
           console.log(event)
           this.count += this.optimizedIncrementAmount
-          this.newCount += this.count
+          // this.newCount += this.count
         }
       },
 }
