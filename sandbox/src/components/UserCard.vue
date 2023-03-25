@@ -35,3 +35,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+button {
+    border: 8px solid blue;
+}
+</style>
