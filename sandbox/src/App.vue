@@ -1,20 +1,11 @@
 <template>
-  <h1>New App</h1>
-  <Suspense>
-    <Pokedex region="Hoenn"/>
-
-    <template v-slot:fallback>
-      Loading Pokedex...
-    </template>
-    </Suspense>
+  <BaseCounter />
+  <UserCard :user="{ name: 'Ben', food: 'Ramen' }"/>
   
 </template>
 
-<script>
-import Pokedex from './components/Pokedex.vue';
-export default {
-  components: {
-    Pokedex
-  }
-}
+<script setup>
+import BaseCounter from './components/BaseCounter.vue';
+import UserCard from './components/UserCard.vue';
+  
 </script>
