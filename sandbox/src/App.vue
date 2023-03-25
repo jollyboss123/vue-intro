@@ -1,5 +1,10 @@
 <template>
   <div class="wrapper">
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/pokedex">Pokedex</router-link>
+    </nav>
+    <router-view />
     <h2>{{ colorPreference }}</h2>
     <input type="color" v-model="colorPreference"/>
     <BaseCounter />
@@ -13,7 +18,7 @@ import BaseCounter from './components/BaseCounter.vue';
 import UserCard from './components/UserCard.vue';
 import { ref } from 'vue';
 
-const colorPreference = ref("black")
+const colorPreference = ref("white")
 </script>
 
 <style>

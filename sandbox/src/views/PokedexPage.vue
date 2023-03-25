@@ -1,5 +1,5 @@
-<script setup>
-import BaseButton from './BaseButton.vue';
+<!-- <script setup>
+import BaseButton from '../components/BaseButton.vue';
 import {ref, computed, reactive, defineEmits, onBeforeUnmount} from 'vue'
 
 // only vanilla js in setup 
@@ -54,4 +54,11 @@ onBeforeUnmount(() => {
     <button @click="changeRegionName">Change Region Name</button>
     <BaseButton />
     <pre>{{ pokedex }}</pre>
+</template> -->
+
+<script setup>
+</script>
+
+<template>
+    <h1>Pokedex</h1>
 </template>
