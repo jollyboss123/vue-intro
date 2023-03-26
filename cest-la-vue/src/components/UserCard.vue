@@ -1,17 +1,22 @@
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
     props: {
         user: {
             type: Object,
             required: true
         }
-    }
+    },
+    components: { RouterLink }
 }
 </script>
 
 <template>
     <li :class="$style['user-card']">
-        {{ user.name }} : {{ user.website }}
+        <RouterLink :to="`/user/${user.name}`">
+            {{ user.name }} : {{ user.website }}
+        </RouterLink>
     </li>
 </template>
 

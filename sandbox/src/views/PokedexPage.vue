@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 
 const pokemonNo = ref(0)
-const api = ref("/pokedex/" + pokemonNo.value)
 
 </script>
 

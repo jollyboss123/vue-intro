@@ -24,7 +24,7 @@ userList.value = await fetchUsers()
   <main>
     <h1>{{title}}</h1>
     <ul>
-       <UserCard v-for="user in userList" :user="user" :key="`user-${user.id}`"/>
+        <UserCard v-for="user in userList" :user="user" :key="`user-${user.id}`"/>
     </ul>
   </main>
 </template>
