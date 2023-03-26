@@ -1,5 +1,8 @@
 <template>
     <h1>{{ displayTitle }}</h1>
+    <h2>Pinia Counter</h2>
+    <p>Pinia count: {{ newCountStore.count }}</p>
+    <button @click="newCountStore.increment">Increment Pinia Count</button>
     <h2>New Counter</h2>
     <p>Global count: {{ countStore.globalCount }}</p>
     <p>Local count: {{ countStore.localCount }}</p>
@@ -18,12 +21,16 @@
 
 <script>
 import { useCount } from '@/composables/countStore'
+import { useCountStore } from '@/stores/CountStore';
 export default {
   setup() {
     const countStore = useCount()
+    const newCountStore = useCountStore()
+
     console.log(countStore);
     return {
-      countStore
+      countStore,
+      newCountStore
     }
   },
   data: () => ({
